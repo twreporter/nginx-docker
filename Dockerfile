@@ -18,6 +18,11 @@ RUN apt-get install -y nginx
 # Remove the default Nginx configuration file
 RUN rm -v /etc/nginx/nginx.conf
 
+# Remove the cache metadata
+RUN rm -v /data/nginx/data
+
+RUN mkdir -p /data/nginx/data
+
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
 
