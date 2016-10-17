@@ -3,10 +3,9 @@ FROM ubuntu:14.04
 
 # Install Nginx
 
-# Add application repository URL to the default sources
-# RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
-
 # Update the repository
+RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/apt/sources.list.d/nginx-stable-trusty.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
 RUN apt-get update
 
 # Install necessary tools
@@ -23,6 +22,8 @@ ADD nginx.conf /etc/nginx/
 
 # Append "daemon off;" to the configuration file
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+RUN nginx -v 
 
 # Expose ports
 EXPOSE 80
