@@ -19,7 +19,7 @@ RUN apt-get install -y nginx
 RUN rm -v /etc/nginx/nginx.conf
 
 # Remove the cache metadata
-RUN rm -v /data/nginx/data
+RUN rm -v -f /data/nginx/data
 
 RUN mkdir -p /data/nginx/data
 
